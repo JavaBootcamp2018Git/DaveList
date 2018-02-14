@@ -2,14 +2,13 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
+    <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Show Books</title>
+    <link rel="stylesheet" href="../static/css/tablestyle.css">
+    <link rel="stylesheet" href="css/tablestyle.css">
 </head>
 <body>
-
-
-
-<div class="row" th:fragment="navbar">
+<div class="row">
     <div class="container-fluid">
         <!-- A grey horizontal navbar that becomes vertical on small screens -->
         <nav class="navbar navbar-expand-sm bg-light">
@@ -28,40 +27,50 @@
         </nav>
     </div>
 </div>
-<a th:href="@{/ListBook}">Show All Books</a><br />
-
 <table>
     <tr>
-        <th>Title</th>
-        <th>Authour</th>
-        <th>Year of Publication</th>
-        <td>ISBN Number</td>
-        <td>Book Checkout</td>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Price</th>
+        <th>Listing Date</th>
+        <th>Description</th>
+        <th>Rules</th>
+        <th>Wifi</th>
+        <th>Cable</th>
+        <th>Private Bathapartment</th>
+        <th>Rented</th>
+        <td>Details</td>
     </tr>
 
-    <tr th:each="readingbook : ${readingbooklist}">
-        <td th:text="${readingbook.title}"></td>
-        <td th:text="${readingbook.authour}"></td>
-        <td th:text="${readingbook.yearofpublication}"></td>
-        <td th:text="${readingbook.ISBN}"></td>
-        <td th:text="${readingbook.isCheckedOut}"></td>
-
-
+    <tr th:each="apartment : ${apartments}">
+        <td th:text="${apartment.address}"></td>
+        <td th:text="${apartment.city}"></td>
+        <td th:text="${apartment.state}"></td>
+        <td th:text="${apartment.price}"></td>
+        <td th:text="${apartment.listingDate}"></td>
+        <td th:text="${apartment.description}"></td>
+        <td th:text="${apartment.rules}"></td>
+        <td th:text="${apartment.wifi}"></td>
+        <td th:text="${apartment.cable}"></td>
+        <td th:text="${apartment.privateBathapartment}"></td>
+        <td th:text="${apartment.rented}"></td>
         <td>
-            <a th:href="@{/update/{id}(id=${readingbook.id})}">Return or Borrow This Book From Library</a>
-            <a th:href="@{/detail/{id}(id=${readingbook.id})}">Details</a>
-            <a th:href="@{/delete/{id}(id=${readingbook.id})}">Remove this Book From The Library</a>
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/{id}(id=${apartment.id})}" target="_self">
+                Change Apartment Listing
+            </a></p>
+
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/{id}(id=${apartment.id})}" target="_self">
+                See All Apartments
+            </a></p>
+
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/{id}(id=${apartment.id})}" target="_self">
+                Remove this Apartment
+            </a></p>
         </td>
     </tr>
 </table>
 
-<!--<label>Title</label><span th:text="${readingbook.title}"></span><br />-->
-<!--<label>Authour</label><span th:text="${readingbook.authour}"></span><br />-->
-<!--<label>ISBN</label><span th:text="${readingbook.ISBN}"></span><br />-->
-<!--<label>Checkout Status</label><span th:text="${readingbook.isCheckedOut}"></span><br />-->
-<!--<label>Year of Publication</label><span th:text="${readingbook.yearofpublication}"></span><br />-->
-<a th:href="@{/delete/{id}(id=${readingbook.id})}">Delete this
-    book</a>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
