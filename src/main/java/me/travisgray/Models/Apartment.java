@@ -50,11 +50,11 @@ public class Apartment {
 
     private String rules;
 
-    private String wifi; // (yes/no),
+    private String wifi;
 
-    private String cable; // cable (none/basic/premium)
+    private String cable;
 
-    private String privateBathroom; // private bathroom (yes/no).
+    private String privateBathroom;
 
     @NotNull
     private String rented;

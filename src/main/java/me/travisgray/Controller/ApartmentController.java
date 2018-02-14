@@ -27,14 +27,14 @@ public class ApartmentController {
         return "index2";
     }
 
-    @GetMapping("/ListApartment")
+    @GetMapping("/list")
     public String listApartments(Model model){
         model.addAttribute("apartmentlist",apartmentRepository.findAll());
 //        Storing Book entries correctly
-        return "Apartmentlist";
+        return "apartmentlist";
     }
 
-    @GetMapping("/AddApartment")
+    @GetMapping("/add")
     public String apartmentForm(Model model){
         model.addAttribute("apartment",new Apartment());
         return "addapartmentform";
@@ -43,7 +43,7 @@ public class ApartmentController {
 
 
     //    Must pass created book entry here then save to repository model for thymeleaf loop
-    @PostMapping("/AddApartment")
+    @PostMapping("/add")
     public String processapartmentForm(@Valid @ModelAttribute("apartment") Apartment apartment, BindingResult result, Model model){
 
         if (result.hasErrors()){
@@ -51,27 +51,21 @@ public class ApartmentController {
         }
 
 ////        Check to see if image value is empty if it is then set default image string for thymeleaf add form
-//        if(apartment.getImage().isEmpty()){
-//            readingBook.setImage(defaultimage);
-//        }
-//
-//        bookRepository.save(readingBook);
 //        System.out.println("Test to see checkout status text field being stored correctly"+readingBook.getCheckoutstatus().equalsIgnoreCase("Borrow"));
 //        Need to make sure to add all books to model for thymeleaf access after this route is complete
         apartmentRepository.save(apartment);
-        model.addAttribute("apartment",apartmentRepository.findAll());
-        return "Apartmentlist";
+        System.out.println(apartment.getAddress()+apartment.getCity()+apartment.getCable()+apartment.getListingDate()+apartment.getPrice());
+        model.addAttribute("apartmentlist",apartmentRepository.findAll());
+        return "apartmentlist";
     }
 
     @GetMapping("/detail/{id}")
     public String showBook(@PathVariable("id") long id, Model model){
-//        model.addAttribute("readingbook",bookRepository.findOne(id));
 
-//        Test to see if route fine all books including new user generated book
-//        Working correctly now
+//        Test to see if route fined all apartments including new user Apartment
         model.addAttribute("apartmentlist",apartmentRepository.findAll());
 
-        return "Apartmentlist";
+        return "apartmentlist";
     }
 
     @GetMapping("/update/{id}")
@@ -84,7 +78,7 @@ public class ApartmentController {
     public String deleteBook(@PathVariable("id") long id, Model model){
         model.addAttribute("apartment",apartmentRepository.findOne(id));
         apartmentRepository.delete(id);
-        return "Apartmentlist";
+        return "apartmentlist";
     }
 
 

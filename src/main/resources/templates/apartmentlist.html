@@ -38,12 +38,12 @@
         <th>Rules</th>
         <th>Wifi</th>
         <th>Cable</th>
-        <th>Private Bathapartment</th>
+        <th>Private Bathroom</th>
         <th>Rented</th>
         <td>Details</td>
     </tr>
 
-    <tr th:each="apartment : ${apartments}">
+    <tr th:each="apartment : ${apartmentlist}">
         <td th:text="${apartment.address}"></td>
         <td th:text="${apartment.city}"></td>
         <td th:text="${apartment.state}"></td>
@@ -53,7 +53,7 @@
         <td th:text="${apartment.rules}"></td>
         <td th:text="${apartment.wifi}"></td>
         <td th:text="${apartment.cable}"></td>
-        <td th:text="${apartment.privateBathapartment}"></td>
+        <td th:text="${apartment.privateBathroom}"></td>
         <td th:text="${apartment.rented}"></td>
         <td>
             <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/{id}(id=${apartment.id})}" target="_self">
