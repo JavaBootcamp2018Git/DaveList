@@ -27,6 +27,11 @@ public class ApartmentController {
         return "index2";
     }
 
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
     @GetMapping("/list")
     public String listApartments(Model model){
         model.addAttribute("apartmentlist",apartmentRepository.findAll());
@@ -58,6 +63,10 @@ public class ApartmentController {
         model.addAttribute("apartmentlist",apartmentRepository.findAll());
         return "apartmentlist";
     }
+@GetMapping("/test")
+public String testpage(){
+        return "test";
+}
 
     @GetMapping("/detail/{id}")
     public String showBook(@PathVariable("id") long id, Model model){
